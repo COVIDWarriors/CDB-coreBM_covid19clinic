@@ -30,10 +30,10 @@ NUM_SAMPLES = 96
 NUM_SAMPLES = NUM_SAMPLES - 1 #Remove last sample (PC), done manually
 
 air_gap_vol = 15
-MS_vol = 5
+MS_vol = 10
 air_gap_vol_MS = 2
 height_MS = -35
-temperature = 25
+temperature = 10
 
 x_offset = [0, 0]
 
@@ -311,16 +311,7 @@ def run(ctx: protocol_api.ProtocolContext):
                     STEPS[STEP]['description'] + ' took ' + str(time_taken))
         STEPS[STEP]['Time:'] = str(time_taken)
 
-    # Export the time log to a tsv file
-    if not ctx.is_simulating():
-        with open(file_path, 'w') as f:
-            f.write('STEP\texecution\tdescription\twait_time\texecution_time\n')
-            for key in STEPS.keys():
-                row = str(key)
-                for key2 in STEPS[key].keys():
-                    row += '\t' + format(STEPS[key][key2])
-                f.write(row + '\n')
-        f.close()
+
 
     ############################################################################
     # STEP 2: TRANSFER BEADS
